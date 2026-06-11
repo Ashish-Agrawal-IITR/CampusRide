@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --page-from: #e9f4fc;
+  --page-via:  #eef5fd;
+  --page-to:   #e7f7f4;
+}
+.dark {
+  --page-from: #0a1622;
+  --page-via:  #0c1a28;
+  --page-to:   #0a1c20;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: theme('colors.ink');
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #d9f1ee 0%, transparent 55%),
+    linear-gradient(160deg, var(--page-from), var(--page-via) 45%, var(--page-to));
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+.dark body { color: #e8eef5; }
+
+@layer components {
+  .card {
+    @apply bg-white/90 dark:bg-slate-900/70 backdrop-blur rounded-xl2 shadow-card
+           border border-white/60 dark:border-white/5;
+  }
+  .gradient-brand { @apply bg-gradient-to-r from-brand-500 to-teal-500; }
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+  .btn-primary {
+    @apply gradient-brand text-white font-semibold rounded-full px-5 py-2.5
+           shadow-card hover:brightness-105 active:scale-[0.99] transition;
+  }
+  .btn-ghost {
+    @apply bg-white dark:bg-slate-800 text-ink dark:text-slate-100 font-semibold
+           rounded-full px-5 py-2.5 border border-slate-200 dark:border-slate-700
+           hover:bg-slate-50 transition;
+  }
+  .stat-num { @apply text-4xl font-extrabold tracking-tight text-ink dark:text-white; }
+  .muted { @apply text-slate-500 dark:text-slate-400; }
+  .nav-link {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold
+           text-slate-500 dark:text-slate-400 hover:text-ink dark:hover:text-white transition;
+  }
+  .nav-link.active { @apply bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300; }
+}
+
+/* Leaflet tweaks */
+.leaflet-container { background: #dbeafe; font-family: inherit; }
+.driver-marker, .you-marker { background: transparent; border: none; }
